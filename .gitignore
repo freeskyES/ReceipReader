@@ -1,3 +1,8 @@
+.DS_Store
+/captures
+.externalNativeBuild
+.cxx
+
 # Gradle files
 .gradle/
 build/
