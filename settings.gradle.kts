@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -19,5 +20,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Receipt Reader"
+rootProject.name = "receiptreader"
 include(":app")
+include(":camerax")
+include(":ocr")
+include(":gallery")
