@@ -18,7 +18,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eunsong.camerax.CameraPreview
 
-
 @Composable
 fun HomeScreen(
     modifier: Modifier,

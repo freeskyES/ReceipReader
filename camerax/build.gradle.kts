@@ -1,9 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt)
-    id("kotlin-kapt")
+    alias(libs.plugins.receiptreader.android.library)
+    alias(libs.plugins.receiptreader.android.library.compose)
+    alias(libs.plugins.receiptreader.hilt)
 }
 
 android {
@@ -43,8 +41,9 @@ dependencies {
     implementation(libs.androidx.camera.view)
 
     //hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     //compose
     implementation(libs.androidx.activity.compose)

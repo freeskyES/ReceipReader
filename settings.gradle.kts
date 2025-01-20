@@ -19,9 +19,12 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
 rootProject.name = "receiptreader"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":camerax")
 include(":ocr")
 include(":gallery")
+
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))

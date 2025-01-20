@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.receiptreader.android.library)
+    alias(libs.plugins.receiptreader.android.library.compose)
+//    alias(libs.plugins.receiptreader.hilt)
 }
 
 android {
