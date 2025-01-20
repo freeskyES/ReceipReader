@@ -18,10 +18,15 @@ jetbrainsKotlinJvm = "2.1.0"
 #build-logic
 androidxTracing = "1.3.0-alpha02"
 androidxLintGradle = "1.0.0-alpha03"
+#Hilt
+ksp = "2.1.0-1.0.29"
+androidDesugarJdkLibs = "2.1.4"
+androidTools = "31.8.0"
 
 
 
 [libraries]
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 #androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
@@ -52,6 +57,14 @@ androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", versi
 androidx-lint-gradle = { group = "androidx.lint", name = "lint-gradle", version.ref = "androidxLintGradle" }
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+## Hilt
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 
 
 [plugins]
@@ -63,6 +76,16 @@ android-lint = { id = "com.android.lint", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+## Hilt
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
-# Plugins defined by this project
+
+# Plugins defined by this
+receiptreader-android-application = { id = "receiptreader.android.application" }
+receiptreader-android-application-compose = { id = "receiptreader.android.application.compose" }
+receiptreader-android-library-compose = { id = "receiptreader.android.library.compose" }
 receiptreader-android-library = { id = "receiptreader.android.library" }
+receiptreader-android-lint = { id = "receiptreader.android.lint" }
+receiptreader-hilt = { id = "receiptreader.hilt" }
+receiptreader-android-application-flavors = { id = "receiptreader.android.application.flavors" }
+

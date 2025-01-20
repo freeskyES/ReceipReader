@@ -36,10 +36,33 @@ tasks {
 
 gradlePlugin {
     plugins {
+        register("androidApplication") {
+            id = libs.plugins.receiptreader.android.application.asProvider().get().pluginId
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
         register("androidLibrary") {
-            id =
-                "receiptreader.android.library"//libs.plugins.receiptreader.android.library.asProvider().get().pluginId
+            id = libs.plugins.receiptreader.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidApplicationCompose") {
+            id = libs.plugins.receiptreader.android.application.compose.get().pluginId
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = libs.plugins.receiptreader.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("hilt") {
+            id = libs.plugins.receiptreader.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
+        }
+        register("androidFlavors") {
+            id = libs.plugins.receiptreader.android.application.flavors.get().pluginId
+            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
+        }
+        register("androidLint") {
+            id = libs.plugins.receiptreader.android.lint.get().pluginId
+            implementationClass = "AndroidLintConventionPlugin"
         }
     }
 }

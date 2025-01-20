@@ -1,9 +1,15 @@
+import com.eunsong.convention.ReceiptReaderBuildType
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt)
-    id("kotlin-kapt")
+//    alias(libs.plugins.android.application)
+//    alias(libs.plugins.kotlin.android)
+//    alias(libs.plugins.kotlin.compose)
+//    alias(libs.plugins.hilt)
+
+    alias(libs.plugins.receiptreader.android.application)
+    alias(libs.plugins.receiptreader.android.application.compose)
+    alias(libs.plugins.receiptreader.hilt)
+    alias(libs.plugins.receiptreader.android.application.flavors)
 }
 
 android {
@@ -21,8 +27,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ReceiptReaderBuildType.DEBUG.applicationIdSuffix
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            applicationIdSuffix = ReceiptReaderBuildType.RELEASE.applicationIdSuffix
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,14 +53,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":camerax"))
-    project(":camerax")
-    project(":gallery")
-    project(":ocr")
+    implementation(projects.camerax)
+    implementation(projects.gallery)
+    implementation(projects.ocr)
 
     //hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
     //compose
