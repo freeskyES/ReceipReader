@@ -14,7 +14,8 @@ material = "1.12.0"
 hilt = "2.54"
 hiltNavigationCompose = "1.2.0"
 jetbrainsKotlinJvm = "2.1.0"
-
+kotlinxCoroutines = "1.10.1"
+turbine = "1.2.0"
 #build-logic
 androidxTracing = "1.3.0-alpha02"
 androidxLintGradle = "1.0.0-alpha03"
@@ -22,6 +23,9 @@ androidxLintGradle = "1.0.0-alpha03"
 ksp = "2.1.0-1.0.29"
 androidDesugarJdkLibs = "2.1.4"
 androidTools = "31.8.0"
+#ocr
+mlkit-text = "16.0.1"
+google-vision-ai = "1.11.0"
 
 
 
@@ -66,6 +70,16 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 
+#ocr
+mlkit-text-recognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "mlkit-text" }
+google-vision-ai = { group = "com.google.cloud", name = "google-cloud-vision", version.ref = "google-vision-ai" }
+
+#core-common
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -88,4 +102,6 @@ receiptreader-android-library = { id = "receiptreader.android.library" }
 receiptreader-android-lint = { id = "receiptreader.android.lint" }
 receiptreader-hilt = { id = "receiptreader.hilt" }
 receiptreader-android-application-flavors = { id = "receiptreader.android.application.flavors" }
+receiptreader-jvm-library = { id = "receiptreader.jvm.library" }
+receiptreader-android-test = { id = "receiptreader.android.test" }
 
