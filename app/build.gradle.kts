@@ -1,15 +1,9 @@
-import com.eunsong.convention.ReceiptReaderBuildType
-
 plugins {
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.kotlin.compose)
-//    alias(libs.plugins.hilt)
-
     alias(libs.plugins.receiptreader.android.application)
     alias(libs.plugins.receiptreader.android.application.compose)
     alias(libs.plugins.receiptreader.hilt)
     alias(libs.plugins.receiptreader.android.application.flavors)
+    alias(libs.plugins.receiptreader.android.application.firebase)
 }
 
 android {
@@ -28,11 +22,11 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = ReceiptReaderBuildType.DEBUG.applicationIdSuffix
+            applicationIdSuffix = com.eunsong.receiptreader.ReceiptReaderBuildType.DEBUG.applicationIdSuffix
         }
         release {
             isMinifyEnabled = true
-            applicationIdSuffix = ReceiptReaderBuildType.RELEASE.applicationIdSuffix
+            applicationIdSuffix = com.eunsong.receiptreader.ReceiptReaderBuildType.RELEASE.applicationIdSuffix
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -41,11 +35,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -58,8 +52,6 @@ dependencies {
     implementation(projects.ocr)
 
     //hilt
-//    implementation(libs.hilt.android)
-//    kapt(libs.hilt.android.compiler)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 

@@ -1,4 +1,4 @@
-package com.eunsong.convention
+package com.eunsong.receiptreader
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project

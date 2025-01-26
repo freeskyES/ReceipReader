@@ -1,11 +1,11 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.eunsong.convention.configureFlavors
-import com.eunsong.convention.configureGradleManagedDevices
-import com.eunsong.convention.configureKotlinAndroid
-import com.eunsong.convention.configurePrintApksTask
-import com.eunsong.convention.disableUnnecessaryAndroidTests
-import com.eunsong.convention.libs
+import com.eunsong.receiptreader.configureFlavors
+import com.eunsong.receiptreader.configureGradleManagedDevices
+import com.eunsong.receiptreader.configureKotlinAndroid
+import com.eunsong.receiptreader.configurePrintApksTask
+import com.eunsong.receiptreader.disableUnnecessaryAndroidTests
+import com.eunsong.receiptreader.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

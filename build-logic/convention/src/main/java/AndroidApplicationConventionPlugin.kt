@@ -1,8 +1,8 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.eunsong.convention.configureGradleManagedDevices
-import com.eunsong.convention.configureKotlinAndroid
-import com.eunsong.convention.configurePrintApksTask
+import com.eunsong.receiptreader.configureGradleManagedDevices
+import com.eunsong.receiptreader.configureKotlinAndroid
+import com.eunsong.receiptreader.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

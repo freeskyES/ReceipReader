@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.receiptreader.android.library)
     alias(libs.plugins.receiptreader.android.library.compose)
-//    alias(libs.plugins.receiptreader.hilt)
+    alias(libs.plugins.receiptreader.hilt)
 }
 
 android {
@@ -25,15 +25,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
+    implementation(projects.core.common)
+
+    implementation(libs.mlkit.text.recognition)
+//    implementation(libs.google.vision.ai)
+
+    ksp(libs.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
