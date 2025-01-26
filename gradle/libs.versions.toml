@@ -16,6 +16,7 @@ hiltNavigationCompose = "1.2.0"
 jetbrainsKotlinJvm = "2.1.0"
 kotlinxCoroutines = "1.10.1"
 turbine = "1.2.0"
+gmsPlugin = "4.4.2"
 #build-logic
 androidxTracing = "1.3.0-alpha02"
 androidxLintGradle = "1.0.0-alpha03"
@@ -26,8 +27,8 @@ androidTools = "31.8.0"
 #ocr
 mlkit-text = "16.0.1"
 google-vision-ai = "1.11.0"
-
-
+firebaseBom = "33.8.0"
+firebaseCrashlyticsPlugin = "3.0.2"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -65,6 +66,11 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
+
 
 ## Hilt
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
@@ -90,6 +96,8 @@ android-lint = { id = "com.android.lint", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 ## Hilt
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
@@ -104,4 +112,6 @@ receiptreader-hilt = { id = "receiptreader.hilt" }
 receiptreader-android-application-flavors = { id = "receiptreader.android.application.flavors" }
 receiptreader-jvm-library = { id = "receiptreader.jvm.library" }
 receiptreader-android-test = { id = "receiptreader.android.test" }
+receiptreader-android-application-firebase = { id = "receiptreader.android.application.firebase" }
+
 

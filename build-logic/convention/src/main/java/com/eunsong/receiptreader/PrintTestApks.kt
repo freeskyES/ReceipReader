@@ -1,4 +1,4 @@
-package com.eunsong.convention
+package com.eunsong.receiptreader
 
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.AndroidComponentsExtension

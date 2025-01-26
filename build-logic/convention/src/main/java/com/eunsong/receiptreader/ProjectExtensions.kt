@@ -1,4 +1,4 @@
-package com.eunsong.convention
+package com.eunsong.receiptreader
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

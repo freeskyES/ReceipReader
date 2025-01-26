@@ -1,4 +1,4 @@
-package com.eunsong.convention
+package com.eunsong.receiptreader
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
@@ -29,8 +29,8 @@ internal fun Project.configureKotlinAndroid(
         compileOptions {
             // Up to Java 11 APIs are available through desugaring
             // https://developer.android.com/studio/write/java11-minimal-support-table
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
             isCoreLibraryDesugaringEnabled = true
         }
     }
@@ -49,8 +49,8 @@ internal fun Project.configureKotlinJvm() {
     extensions.configure<JavaPluginExtension> {
         // Up to Java 11 APIs are available through desugaring
         // https://developer.android.com/studio/write/java11-minimal-support-table
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     configureKotlin<KotlinJvmProjectExtension>()
@@ -68,7 +68,7 @@ private inline fun <reified T : KotlinBaseExtension> Project.configureKotlin() =
         is KotlinJvmProjectExtension -> compilerOptions
         else -> TODO("Unsupported project extension $this ${T::class}")
     }.apply {
-        jvmTarget = JvmTarget.JVM_11
+        jvmTarget = JvmTarget.JVM_17
         allWarningsAsErrors = warningsAsErrors.toBoolean()
         freeCompilerArgs.add(
             // Enable experimental coroutines APIs, including Flow

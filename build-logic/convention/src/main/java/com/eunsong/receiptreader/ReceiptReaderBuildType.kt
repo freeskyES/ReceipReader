@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-package com.eunsong.convention
+package com.eunsong.receiptreader
 
 /**
  * This is shared between :app and :benchmarks module to provide configurations type safety.
