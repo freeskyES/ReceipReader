@@ -50,6 +50,7 @@ dependencies {
     implementation(projects.camerax)
     implementation(projects.gallery)
     implementation(projects.ocr)
+    implementation(projects.core.common)
 
     implementation(libs.coil.compose)
     implementation(libs.timber)

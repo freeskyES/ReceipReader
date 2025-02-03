@@ -46,7 +46,10 @@ fun CameraPreview(
                 CoroutineScope(Dispatchers.Main).launch {
                     val result = cameraCaptureManager.captureImage()
                     result.fold(
-                        onSuccess = { imagePath -> onImageCaptured(imagePath) },
+                        onSuccess = { imagePath ->
+//                            val imagePath = ImageStorageUtil.saveBitmapToFile(context, bitmap, "captured.jpg")
+                            onImageCaptured(imagePath) // 이미지 경로 반환
+                        },
                         onFailure = { error -> onError(error) }
                     )
                 }

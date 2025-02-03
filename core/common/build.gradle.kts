@@ -20,8 +20,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.timber)
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.core)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 

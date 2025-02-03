@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.launch
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eunsong.camerax.CameraPreview
+import com.eunsong.camerax.PermissionRequest
+import com.eunsong.receipreader.core.util.ImageStorageUtil
 import java.io.FileNotFoundException
 import java.io.InputStream
 
@@ -39,19 +42,46 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
 
+    // 갤러리에서 이미지 선택
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let { selectedUri ->
-            val imagePath = selectedUri.toString()
-            viewModel.handleIntent(HomeIntent.ImageSelected(imagePath))
+            val file = ImageStorageUtil.getFileFromUri(context, selectedUri)
+            file?.let { viewModel.handleIntent(HomeIntent.ImageSelected(it.absolutePath)) }
+        }
+    }
+
+    // 내장 카메라 실행
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicturePreview()
+    ) { bitmap: Bitmap? ->
+        bitmap?.let {
+            val fileUrl = ImageStorageUtil.saveBitmapToFile(context, it)
+            viewModel.handleIntent(HomeIntent.ImageSelected(fileUrl))
         }
     }
 
     when (state) {
-        is HomeState.Idle -> IdleScreen(viewModel) { galleryLauncher.launch("image/*") }
-        is HomeState.CameraOpen -> CameraScreen(viewModel)
+        is HomeState.Idle -> IdleScreen(
+            onOpenCamera = {
+                viewModel.handleIntent(HomeIntent.OpenCamera)
+//                val imageUri = ImageStorageUtil.createImageUri(context)
+            },
+            onOpenGallery = { galleryLauncher.launch("image/*") }
+        )
+        is HomeState.CameraOpen -> {
+            PermissionRequest(
+                onPermissionGranted = {
+                    cameraLauncher.launch() // 카메라 실행
+                },
+                onPermissionDenied = {
+                    viewModel.handleIntent(HomeIntent.OcrFailed("카메라 권한이 필요합니다."))
+                }
+            )
+        } //CameraScreen(viewModel)
         is HomeState.ImageCaptured -> ImagePreviewScreen((state as HomeState.ImageCaptured).imagePath, viewModel)
         is HomeState.OcrProcessing -> OcrProcessingScreen()
         is HomeState.OcrSuccess -> OcrResultScreen((state as HomeState.OcrSuccess).text)
@@ -62,20 +92,22 @@ fun HomeScreen(
 // 카메라 & 갤러리 선택 화면
 @Composable
 fun IdleScreen(
-    viewModel: HomeViewModel,
-    galleryLauncher: () -> Unit
+    onOpenCamera: () -> Unit,
+    onOpenGallery: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { viewModel.handleIntent(HomeIntent.OpenCamera) }) {
+        Button(onClick = {
+            onOpenCamera()
+        }) {
             Text("📷 카메라 열기")
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            galleryLauncher()
+            onOpenGallery()
         }) {
             Text("🖼️ 갤러리에서 선택")
         }
@@ -99,7 +131,8 @@ fun CameraScreen(viewModel: HomeViewModel) {
 @Composable
 fun ImagePreviewScreen(imagePath: String, viewModel: HomeViewModel) {
     val context = LocalContext.current
-    val bitmap = remember { loadBitmapFromUri(context.contentResolver, Uri.parse(imagePath)) }
+//    val bitmap = remember { loadBitmapFromUri(context.contentResolver, Uri.parse(imagePath)) }
+    val bitmap = remember { ImageStorageUtil.loadBitmapFromFile(imagePath) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
