@@ -1,7 +1,6 @@
 package com.eunsong.camerax
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -45,7 +44,7 @@ class CameraCaptureManager(
         }, ContextCompat.getMainExecutor(previewView.context))
     }
 
-    override suspend fun captureImage(): Result<Bitmap> =
+    override suspend fun captureImage(): Result<String> =
         suspendCancellableCoroutine { continuation ->
             val outputFile = fileProvider()
             val outputOptions = ImageCapture.OutputFileOptions.Builder(outputFile).build()
@@ -55,8 +54,10 @@ class CameraCaptureManager(
                 ContextCompat.getMainExecutor(previewView.context),
                 object : ImageCapture.OnImageSavedCallback {
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                        val bitmap = BitmapFactory.decodeFile(outputFile.absolutePath)
-                        continuation.resume(Result.success(bitmap))
+                        val savedUri = outputFileResults.savedUri ?: Uri.fromFile(outputFile)
+                        val imagePath = savedUri.toString() // 경로 반환
+                        continuation.resume(Result.success(imagePath))
+//                        val bitmap = BitmapFactory.decodeFile(outputFile.absolutePath)
                     }
 
                     override fun onError(exception: ImageCaptureException) {

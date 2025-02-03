@@ -1,22 +1,27 @@
 package com.eunsong.ocr.service
 
-import android.graphics.Bitmap
 import com.eunsong.ocr.model.OcrResult
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
-import kotlinx.coroutines.tasks.await
+import jakarta.inject.Inject
 
-class OnDeviceOcrService : OcrService {
-    private val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+class OnDeviceOcrService @Inject constructor(): OcrService {
+//    private val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
 
-    override suspend fun recognizeText(bitmap: Bitmap): OcrResult {
-        val image = InputImage.fromBitmap(bitmap, 0)
-        val result = recognizer.process(image).await()
-        
-        return OcrResult(
-            text = result.text,
-            blocks = result.textBlocks.map { it.text }
-        )
+    override suspend fun recognizeText(imagePath: String): OcrResult {
+        return OcrResult(text = "Hello", blocks = listOf("Hello"))
+//        val bitmap = BitmapFactory.decodeFile(imagePath)
+//        val inputImage = InputImage.fromBitmap(bitmap, 0)
+//
+//        return suspendCoroutine { continuation ->
+//            recognizer.process(inputImage)
+//                .addOnSuccessListener { visionText ->
+//                    continuation.resume(OcrResult(
+//                        text = visionText.text,
+//                        blocks = visionText.textBlocks.map { it.text }
+//                    ))
+//                }
+//                .addOnFailureListener { e ->
+//                    continuation.resumeWithException(e)
+//                }
+//        }
     }
 }

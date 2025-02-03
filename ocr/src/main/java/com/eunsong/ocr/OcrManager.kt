@@ -1,20 +1,19 @@
 package com.eunsong.ocr
 
-import android.graphics.Bitmap
 import com.eunsong.ocr.model.OcrResult
 import com.eunsong.ocr.service.CloudOcrService
-import com.eunsong.ocr.service.OcrService
 import com.eunsong.ocr.service.OnDeviceOcrService
+import jakarta.inject.Inject
 
-class OcrManager(
-    private val onDeviceOcrService: OcrService = OnDeviceOcrService(),
-    private val cloudOcrService: OcrService = CloudOcrService()
+class OcrManager @Inject constructor(
+    private val onDeviceOcrService: OnDeviceOcrService,
+    private val cloudOcrService: CloudOcrService
 ) {
-    suspend fun recognizeText(bitmap: Bitmap, useCloud: Boolean = false): OcrResult {
+    suspend fun recognizeText(imagePath: String, useCloud: Boolean = true): OcrResult {
         return if (useCloud) {
-            cloudOcrService.recognizeText(bitmap)
+            cloudOcrService.recognizeText(imagePath)
         } else {
-            onDeviceOcrService.recognizeText(bitmap)
+            onDeviceOcrService.recognizeText(imagePath)
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.eunsong.camerax
 
-import android.graphics.Bitmap
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +20,7 @@ import java.io.File
 
 @Composable
 fun CameraPreview(
-    onImageCaptured: (Bitmap) -> Unit,
+    onImageCaptured: (String) -> Unit,
     onError: (Throwable) -> Unit
 ) {
     val context = LocalContext.current
@@ -47,7 +46,7 @@ fun CameraPreview(
                 CoroutineScope(Dispatchers.Main).launch {
                     val result = cameraCaptureManager.captureImage()
                     result.fold(
-                        onSuccess = { bitmap -> onImageCaptured(bitmap) },
+                        onSuccess = { imagePath -> onImageCaptured(imagePath) },
                         onFailure = { error -> onError(error) }
                     )
                 }

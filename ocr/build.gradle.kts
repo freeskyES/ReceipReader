@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.receiptreader.android.library)
     alias(libs.plugins.receiptreader.android.library.compose)
     alias(libs.plugins.receiptreader.hilt)
+//    id("com.google.gms.google-services")
 }
 
 android {
@@ -46,16 +47,16 @@ dependencies {
 
     ksp(libs.hilt.android.compiler)
 
-    // To recognize Latin script
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.1")
-    // To recognize Chinese script
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition-chinese:16.0.1")
-    // To recognize Devanagari script
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.1")
-    // To recognize Japanese script
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition-japanese:16.0.1")
-    // To recognize Korean script
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.1")
+//    // To recognize Latin script
+//    implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.1")
+//    // To recognize Chinese script
+//    implementation("com.google.android.gms:play-services-mlkit-text-recognition-chinese:16.0.1")
+//    // To recognize Devanagari script
+//    implementation("com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.1")
+//    // To recognize Japanese script
+//    implementation("com.google.android.gms:play-services-mlkit-text-recognition-japanese:16.0.1")
+//    // To recognize Korean script
+//    implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.1")
     
 
     implementation(libs.androidx.core.ktx)

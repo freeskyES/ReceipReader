@@ -51,6 +51,9 @@ dependencies {
     implementation(projects.gallery)
     implementation(projects.ocr)
 
+    implementation(libs.coil.compose)
+    implementation(libs.timber)
+
     //hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
