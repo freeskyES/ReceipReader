@@ -14,6 +14,7 @@ material = "1.12.0"
 hilt = "2.54"
 hiltNavigationCompose = "1.2.0"
 jetbrainsKotlinJvm = "2.1.0"
+mockitoCore = "5.3.1"
 
 #build-logic
 androidxTracing = "1.3.0-alpha02"
@@ -22,10 +23,12 @@ androidxLintGradle = "1.0.0-alpha03"
 ksp = "2.1.0-1.0.29"
 androidDesugarJdkLibs = "2.1.4"
 androidTools = "31.8.0"
-
+gsonVersion = "2.10.1"
 
 
 [libraries]
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+google-gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 #androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }

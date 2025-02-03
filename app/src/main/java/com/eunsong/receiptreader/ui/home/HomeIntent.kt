@@ -1,4 +1,4 @@
-package com.eunsong.receiptreader.ui
+package com.eunsong.receiptreader.ui.home
 
 import android.graphics.Bitmap
 

@@ -1,4 +1,4 @@
-package com.eunsong.receiptreader.ui
+package com.eunsong.receiptreader.ui.home
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
