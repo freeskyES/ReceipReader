@@ -1,4 +1,4 @@
-package com.eunsong.receiptreader.ui
+package com.eunsong.receiptreader.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

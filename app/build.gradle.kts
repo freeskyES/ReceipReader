@@ -1,11 +1,6 @@
 import com.eunsong.convention.ReceiptReaderBuildType
 
 plugins {
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.kotlin.compose)
-//    alias(libs.plugins.hilt)
-
     alias(libs.plugins.receiptreader.android.application)
     alias(libs.plugins.receiptreader.android.application.compose)
     alias(libs.plugins.receiptreader.hilt)
@@ -57,15 +52,15 @@ dependencies {
     implementation(projects.gallery)
     implementation(projects.ocr)
 
+    implementation(libs.google.gson)
+
     //hilt
-//    implementation(libs.hilt.android)
-//    kapt(libs.hilt.android.compiler)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
     //compose
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
+//    implementation(libs.androidx.activity.compose)
+//    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
@@ -76,6 +71,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
